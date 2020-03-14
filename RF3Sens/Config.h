@@ -10,62 +10,62 @@
 
 /* Config.h */
 //###########################################################################################
-//        Ручные настройки
+//        Manual settings
 //###########################################################################################
 /*
-При отсутствии флага DEBUG_TYPE, программа быстро обрабатывает соотв. регистр и выдает данные на led (штатная работа принтера).
-При установленном флаге DEBUG_TYPE, по serial port передаются данные:
-DEBUG_TYPE = 1  Передача картинки для фокусировки обьектива, колич. байт = ARRAY_WIDTH * ARRAY_HEIGHT
-DEBUG_TYPE = 2  Для теста точности позиционирования (идея dccharacter-а). 
-                Поиск порога как в штатном режиме (важна скорость), как только сработает порог - выдача картинки в serial port
-DEBUG_TYPE = 3  Передача в текстовом виде на терминал данных: Max_Pix, Min_Pix, Pix_Sum, Shutter
-DEBUG_TYPE = 4  Как 3-й режим, но по разрешению сигнала pin_TRIG (лог точно ограничен сигналом z_probe)
-DEBUG_TYPE = 5  Данные перемещения мышки.
-DEBUG_TYPE = 6 Тестирование режима двойного лазера
+In the absence of a flag DEBUG_TYPE, the program quickly processes resp. register and provides data on led (regular printer operation).
+When the DEBUG_TYPE flag is set, data is transmitted via the serial port:
+DEBUG_TYPE = 1 Transmission of the image for focusing the lens, number of. byte = ARRAY_WIDTH * ARRAY_HEIGHT
+DEBUG_TYPE = 2 For a test of positioning accuracy (dccharacter idea).
+                The search for the threshold as in normal mode (speed is important), as soon as the threshold is triggered - issue a picture in the serial port
+DEBUG_TYPE = 3 Transmission in text form to the data terminal: Max_Pix, Min_Pix, Pix_Sum, Shutter
+DEBUG_TYPE = 4 As the 3rd mode, but by the resolution of the pin_TRIG signal (the log is precisely limited by the z_probe signal)
+DEBUG_TYPE = 5 Mouse movement data.
+DEBUG_TYPE = 6 Testing the dual laser mode
 */
 #define DEBUG_TYPE 1 
-#define NUM_SAMPLES_PER_MEASURE 5 //количество данных для 4-го режима
+#define NUM_SAMPLES_PER_MEASURE 5 //amount of data for 4th mode
 
 /*
-Актуально только если есть флаг DEBUG_TYPE
-Если определено то применяется программный Serial порт (только одна нога для передачи данных)
-Для платы Digispark это единственный вариант и автоматически включается на 1 ногу
-Если не определено, для дебага используется Hardware Serial
+Only relevant if there is a DEBUG_TYPE flag
+If defined, the software Serial port is used (only one leg for data transfer)
+For the Digispark, this is the only option and automatically turns on 1 foot
+If not defined, Hardware Serial is used for debugging.
 */
-//#define SOFTWARE_SERIAL 1 // одновременно и признак софтового serial и номер ноги для передачи данных (TX PIN)
+//#define SOFTWARE_SERIAL 1 // at the same time, a sign of software serial and a leg number for data transfer (TX PIN)
 #define SERIAL_SPEED 230400
 
 /*
-Тип сенсора, выбрать один нужный
+Type of sensor, select one you need
 */
 //#define SENS_TYPE_ADNS_5020
 //#define SENS_TYPE_ADNS_2610
 #define SENS_TYPE_ADNS_2620
 
 /*
-Используем ли питание с контроллера
+Do we use power from the controller
 */
-//#define laser_power_via_mcu // режим питания лазера с ног микроконтроллера (подаем питание на нужные ноги)
-//#define sens_power_via_mcu // режим питания сенсора с ног микроконтроллера (подаем питание на нужные ноги)
+//#define laser_power_via_mcu // laser power mode from the feet of the microcontroller (apply power to the desired legs)
+//#define sens_power_via_mcu // sensor power mode from the feet of the microcontroller (we supply power to the desired legs)
 
 /*
-Тип контроллера, выбрать один нужный
+Type of controller, select one you need
 */
 //#define DIGI_SPARK
-//#define ARDUINO_NANO // базовая распайка arduino nano
-//#define ARDUINO_NANO_wPOWER  // распайка сенсора на arduino nano для питания с ног микроконтроллера
+//#define ARDUINO_NANO // arduino nano base wiring
+//#define ARDUINO_NANO_wPOWER  // wiring the sensor on the arduino nano to power the feet of the microcontroller
 #define ARDUINO_NANO_DOUBLE_LASER
 
 /*
-Алгоритм детектирования, выбрать один нужный
+Detection algorithm, select the one you need
 */
-//#define Algo_MaxPix         // простейший режим - срабатывание когда в поле зрения начинает появляться краешек пятна лазера.
-                            // самый стабильный, но дистанция срабатывания разная при разном цвете поверхности
-//#define Algo_MaxSqualMA   // режим обнаружения максимума Squal, т.к. параметр не стабилен введено сглаживание и анализ через среднескользящие
-                            // экспериментальный
+//#define Algo_MaxPix         // the simplest mode is when the edge of the laser spot begins to appear in the field of view.
+                            // the most stable, but the response distance is different for different surface colors
+//#define Algo_MaxSqualMA   // Squal maximum detection mode, as the parameter is not stable; smoothing and analysis are introduced through the sliding average
+                            // experimental
 
 //###########################################################################################
-//        Конец ручных настроек
+//        End of manual settings
 //###########################################################################################
 
 
@@ -81,7 +81,7 @@ DEBUG_TYPE = 6 Тестирование режима двойного лазер
 
 
 //###########################################################################################
-//        Подключение библиотек 
+//        Connecting libraries
 //###########################################################################################
 #if defined(SENS_TYPE_ADNS_5020)
   #include "sens/ADNS_5020.h"
@@ -115,8 +115,8 @@ DEBUG_TYPE = 6 Тестирование режима двойного лазер
 #endif
 
 //###########################################################################################
-//        Определения
-// за пример красивого определения спасибо Денису Константинову aka linvinus  roboforum.ru
+//        Definitions
+// for an example of a beautiful definition, thanks to Denis Konstantinov aka linvinus  roboforum.ru
 //###########################################################################################
 #define GET_PIN(x) x ## _PIN
 #define GET_DDR(x) x ## _DDR

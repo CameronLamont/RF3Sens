@@ -70,7 +70,7 @@ void setup(){
 
 void loop(){
 //###########################################################################################
-// штатный режим датчика для 3D принтера
+// standard sensor mode for 3D printer
 #ifndef DEBUG_TYPE
   uint8_t Frame[NUM_PIXS + 7] = {0};
   uint8_t dataSum, dataSqual, lineMax;
@@ -103,7 +103,7 @@ void loop(){
     PIN_LOW(LED);
   }
 //###########################################################################################
-// отладочные режимы
+// debug modes
 #else //ifndef DEBUG_TYPE
 //-------------------------------------------------------------------------------------------
 #if DEBUG_TYPE ==1
@@ -165,10 +165,10 @@ void loop(){
 //-------------------------------------------------------------------------------------------
 #elif DEBUG_TYPE ==3
 //-------------------------------------------------------------------------------------------
-  //листинг для электронных таблиц: В шапке названия, дальше только данные разделенные "tab".
+  //Listing for spreadsheets: In the header of the title, then only the data is separated by a "tab".
   byte Frame[7];
   uint8_t dataMax, lineMax, dataSum;
-  //заголовок
+  //heading
   SERIAL_OUT.println  (F  ("Squal:\tMax:\tMin:\tSum:\tShutter:\tLaserPower:"));
   while(1){
 //        RegPowLaser = OCR2B;    
@@ -210,13 +210,13 @@ void loop(){
 #if SERIAL_SPEED > 115200
       delay(20);
 #else
-      delay(60);  //задержка больше из-за низкой скорости Serial
+      delay(60);  //delay is longer due to low speed serial
 #endif
   }
 //-------------------------------------------------------------------------------------------
 #elif DEBUG_TYPE ==4
 //-------------------------------------------------------------------------------------------
-  //Как 3-й режим, но по разрешению сигнала pin_TRIG
+  //As 3rd mode, but by pin_TRIG signal resolution
   byte Frame[7];
   PIN_OUTPUT(gpio1);
   PIN_LOW(gpio1);
@@ -226,12 +226,12 @@ void loop(){
   RegPowLaser = 140;
   analogWrite(9, RegPowLaser);
 
-  // начинаем с печати шапки
+  // start by printing caps
   SERIAL_OUT.println (F  ("Squal:\tMax:\tMin:\tSum:\tShutter:\tLaserPower:"));
 
   while(1){
 
-    if(PIN_READ(TRIG)){ // каждое измерение начинается с сигнала триггера (взводится в g-коде)
+    if(PIN_READ(TRIG)){ // each measurement starts with a trigger signal (cocked in g-code)
       
       while(PIN_READ(TRIG));
 
@@ -255,11 +255,11 @@ void loop(){
 #if SERIAL_SPEED > 115200
       delay(20);
 #else
-      delay(60);  //задержка больше из-за низкой скорости Serial
+      delay(60);  //delay is longer due to low speed serial
 #endif
 
-    // после того, как считали значения и отправили их в сериал, даем марлину
-    // сигнал о готовности к следующему шагу
+   // after we read the values ​​and sent them to the series, we give the marlin
+    // signal of readiness for the next step
     PIN_HIGH(gpio1);
     delay(40);
     PIN_LOW(gpio1);
@@ -315,7 +315,7 @@ void loop(){
 #if SERIAL_SPEED > 115200
       delay(20);
 #else
-      delay(60);  //задержка больше из-за низкой скорости Serial
+      delay(60);  // the delay is longer due to the low speed of Serial
 #endif //SERIAL_SPEED > 115200
   }
 #endif //DEBUG_TYPE
@@ -323,7 +323,7 @@ void loop(){
 }
 
 //###########################################################################################
-// процедуры
+// the procedures
 //-------------------------------------------------------------------------------------------
 void RefrPowerLaser(uint16_t power, uint16_t target_value, uint16_t halfDeviation)
 {
@@ -395,7 +395,7 @@ byte ADNS_read(byte address){
     PIN_LOW(NCS);
   #endif
 
-  address &= ~0x80;  //признак записи данных
+  address &= ~0x80;  //data record flag
   for (byte i = 0x80; i; i >>= 1){
     PIN_LOW(NCLOCK);
     address & i ? PIN_HIGH(SDIO) : PIN_LOW(SDIO);

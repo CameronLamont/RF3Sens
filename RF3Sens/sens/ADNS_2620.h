@@ -10,18 +10,18 @@
 
 /* sens/ADNS_2620.h
 
-  Для работы алгоритма определения порога датчика важны:
-    #define ADNS_CONST_MAX
-    #define ADNS_CONST_MIN
-    #define ADNS_CONST_PIX_MIN
-    #define ADNS_CONST_PIX_MAX
-  Для разных матриц подбирать практическим путем.
+For the algorithm for determining the sensor threshold, the following are important:
+    #define ADNS_CONST_MAX
+    #define ADNS_CONST_MIN
+    #define ADNS_CONST_PIX_MIN
+    #define ADNS_CONST_PIX_MAX
+  For different matrices, select in a practical way.
 */
 
 #ifndef SENSOR_ADNS_2620_H
 #define SENSOR_ADNS_2620_H
 
-#undef use_NCS            // имеется ли у сенсора нога NCS
+#undef use_NCS            // Does the sensor have an NCS foot
 
 #define ARRAY_WIDTH            18
 #define ARRAY_HEIGHT           18

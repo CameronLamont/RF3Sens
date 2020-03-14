@@ -1,20 +1,19 @@
-режим питания сенсора и лазера с ног микроконтроллера (подаем питание на нужные ноги)
+power mode of the sensor and the laser from the legs of the microcontroller (we supply power to the desired legs)
 
---- сенсор ADNS-2610 --- 
-OSC_IN (1 pin)        : на кварц 24MHz
-OSC_OUT (2 pin)       : на кварц 24MHz
-MOSI(3 pin)           : PB5 D13
-SCK (4 pin)           : PB2 D10
-GND (6 pin)           : PB4 D12
-VDD (7 pin)           : PB3 D11
-REFA (8 pin)          : через конденсатор 2.2МКФ на землю (6 pin)
+--- ADNS-2610 sensor ---
+OSC_IN (1 pin): on quartz 24MHz
+OSC_OUT (2 pin): on quartz 24MHz
+MOSI (3 pin): PB5 D13
+SCK (4 pin): PB2 D10
+GND (6 pin): PB4 D12
+VDD (7 pin): PB3 D11
+REFA (8 pin): via 2.2MKF capacitor to ground (6 pin)
 
---- лазерный диод 5mW ---
-Laser VCC             : PD2 D2
-Laser GND             : через сопротивление 100Ом на землю 
+--- 5mW laser diode ---
+Laser VCC: PD2 D2
+Laser GND: Through 100 Ohm Resistance to Ground
 
---- выход ---
-MCU POWER (sensor +5V): VCC
-MCU GND (sensor GND)  : GND
-led (sensor signal)   : PC5 A5
-
+--- exit ---
+MCU POWER (sensor + 5V): VCC
+MCU GND (sensor GND): GND
+led (sensor signal): PC5 A5
